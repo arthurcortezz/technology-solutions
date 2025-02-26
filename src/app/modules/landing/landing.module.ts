@@ -15,6 +15,7 @@ import { LandingComponent } from './landing.component';
 import { SharedModule } from '../../shared/shared.module';
 import { LandingHeaderComponent } from './components/header/header.component';
 import { LandingFeaturesComponent } from './components/features/features.component';
+import { LandingAboutComponent } from './components/about/about.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { LandingFeaturesComponent } from './components/features/features.compone
   ],
   declarations: [
     LandingComponent,
+    LandingAboutComponent,
     LandingHeaderComponent,
     LandingFeaturesComponent,
   ],
