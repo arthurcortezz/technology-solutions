@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class AppLandingHeaderComponent implements OnInit {
+export class LandingHeaderComponent implements OnInit {
   constructor(private readonly _router: Router) {}
   ngOnInit(): void {}
 

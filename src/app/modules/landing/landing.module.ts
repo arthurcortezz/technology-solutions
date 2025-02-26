@@ -13,7 +13,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { landingRoutes } from './landing.routing';
 import { LandingComponent } from './landing.component';
 import { SharedModule } from '../../shared/shared.module';
-import { AppLandingHeaderComponent } from './components/header/header.component';
+import { LandingHeaderComponent } from './components/header/header.component';
+import { LandingFeaturesComponent } from './components/features/features.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,10 @@ import { AppLandingHeaderComponent } from './components/header/header.component'
     MatProgressSpinnerModule,
     RouterModule.forChild(landingRoutes),
   ],
-  declarations: [LandingComponent, AppLandingHeaderComponent],
+  declarations: [
+    LandingComponent,
+    LandingHeaderComponent,
+    LandingFeaturesComponent,
+  ],
 })
 export class LandingModule {}

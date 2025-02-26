@@ -25,6 +25,11 @@ export default {
       lg: '1280px',
       xl: '1440px',
     },
+    extend: {
+      backgroundImage: {
+        'features-image': "url('/assets/images/features.jpg')",
+      },
+    }
   },
   plugins: [],
 };
