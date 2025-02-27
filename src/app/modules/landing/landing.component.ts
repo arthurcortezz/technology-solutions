@@ -4,15 +4,12 @@ import { OnInit, Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['landing.styles.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   private unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.unsubscribeAll.next(null);

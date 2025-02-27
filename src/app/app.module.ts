@@ -5,6 +5,7 @@ import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
 
 import { routes } from './app-routing';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const config: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -12,13 +13,14 @@ const config: ExtraOptions = {
 };
 
 @NgModule({
-  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes, config),
   ],
   providers: [],
   bootstrap: [AppComponent],
+  declarations: [AppComponent],
 })
 export class AppModule {}
