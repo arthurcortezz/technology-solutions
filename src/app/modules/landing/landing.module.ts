@@ -17,6 +17,7 @@ import { LandingAboutComponent } from './components/about/about.component';
 import { LandingHeaderComponent } from './components/header/header.component';
 import { LandingFeaturesComponent } from './components/features/features.component';
 import { LandingCarouselComponent } from './components/carousel/carousel.component';
+import { LandingFooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { LandingCarouselComponent } from './components/carousel/carousel.compone
   declarations: [
     LandingComponent,
     LandingAboutComponent,
+    LandingFooterComponent,
     LandingHeaderComponent,
     LandingFeaturesComponent,
     LandingCarouselComponent,
