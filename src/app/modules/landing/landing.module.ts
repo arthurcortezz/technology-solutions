@@ -15,9 +15,10 @@ import { LandingComponent } from './landing.component';
 import { SharedModule } from '../../shared/shared.module';
 import { LandingAboutComponent } from './components/about/about.component';
 import { LandingHeaderComponent } from './components/header/header.component';
+import { LandingFooterComponent } from './components/footer/footer.component';
+import { LandingContactComponent } from './components/contact/contact.component';
 import { LandingFeaturesComponent } from './components/features/features.component';
 import { LandingCarouselComponent } from './components/carousel/carousel.component';
-import { LandingFooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { LandingFooterComponent } from './components/footer/footer.component';
     LandingAboutComponent,
     LandingFooterComponent,
     LandingHeaderComponent,
+    LandingContactComponent,
     LandingFeaturesComponent,
     LandingCarouselComponent,
   ],
