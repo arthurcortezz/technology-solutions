@@ -1,0 +1,73 @@
+<section class="p-6 lg:p-16 flex justify-center">
+  <form
+    class="mt-8 grid w-full lg:w-1/2"
+    #contactNgForm="ngForm"
+    [formGroup]="form"
+  >
+    <h2 class="font-bold text-xl md:text-2xl xl:text-3xl text-primary-400">
+      Entre em contato conosco
+    </h2>
+    <mat-form-field class="w-full">
+      <mat-label class="font-bold">Nome</mat-label>
+      <input
+        matInput
+        formControlName="name"
+        placeholder="Digite o seu nome completo"
+      />
+      <mat-error>O nome é obrigatório.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-2">
+      <mat-label class="font-bold">E-mail</mat-label>
+      <input matInput placeholder="email@email.com" formControlName="email" />
+      <mat-error *ngIf="form.get('email')?.hasError('required')">
+        O e-mail é obrigatório
+      </mat-error>
+      <mat-error *ngIf="form.get('email')?.hasError('email')">
+        Por favor insira um e-mail válido.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-2">
+      <mat-label class="font-bold">Celular</mat-label>
+      <input
+        matInput
+        phoneMask
+        maxlength="15"
+        formControlName="phone"
+        placeholder="(99) 9 9999-9999"
+      />
+      <mat-error *ngIf="form.get('phone')?.hasError('required')">
+        O celular é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full mb-2">
+      <mat-label class="font-bold">Mensagem</mat-label>
+      <textarea
+        matInput
+        style="resize: none; height: 80px"
+        formControlName="message"
+        placeholder="Digite a sua mensagem"
+      ></textarea>
+      <mat-error *ngIf="form.get('message')?.hasError('required')">
+        A mensagem é obrigatória
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      class="w-full mt-6"
+      mat-flat-button
+      color="primary"
+      [disabled]="form.invalid"
+      (click)="onSubmit()"
+    >
+      <span *ngIf="!form.disabled">Entrar</span>
+      <mat-progress-spinner
+        *ngIf="form.disabled"
+        [diameter]="24"
+        [mode]="'indeterminate'"
+      ></mat-progress-spinner>
+    </button>
+  </form>
+</section>

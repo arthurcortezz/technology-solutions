@@ -1,0 +1,35 @@
+<section class="p-4 sm:p-16" *ngIf="slides.length">
+  <div class="max-w-screen-xl mx-auto overflow-hidden relative">
+    <h2 class="font-bold text-xl md:text-2xl xl:text-3xl text-primary-400">
+      Tudo o que seu RH precisa em um só lugar:
+    </h2>
+    <div
+      class="flex transition-transform duration-500 ease-in-out"
+      [ngStyle]="{ transform: 'translateX(' + -currentSlide * 100 + '%)' }"
+    >
+      <div
+        *ngFor="let item of slides; let i = index"
+        class="min-w-full p-6 flex-shrink-0"
+      >
+        <div class="bg-white shadow-md rounded-lg p-6 text-center">
+          <h3 class="font-semibold text-lg">{{ item.title }}</h3>
+          <p class="text-gray-600 mt-2">
+            {{ item.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-full"
+      (click)="prevSlide()"
+    >
+      ◀
+    </button>
+    <button
+      class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white px-3 py-2 rounded-full"
+      (click)="nextSlide()"
+    >
+      ▶
+    </button>
+  </div>
+</section>
