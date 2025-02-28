@@ -5,8 +5,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   templateUrl: './footer.component.html',
   encapsulation: ViewEncapsulation.None,
 })
-export class LandingFooterComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class LandingFooterComponent {
+  openUrl(url: string): void {
+    window.open(url, '_blank');
+  }
 }

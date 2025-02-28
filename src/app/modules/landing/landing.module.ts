@@ -19,6 +19,7 @@ import { LandingFooterComponent } from './components/footer/footer.component';
 import { LandingContactComponent } from './components/contact/contact.component';
 import { LandingFeaturesComponent } from './components/features/features.component';
 import { LandingCarouselComponent } from './components/carousel/carousel.component';
+import { LandingVecanciesComponent } from './components/vecancies/vecancies.component';
 
 @NgModule({
   imports: [
@@ -42,6 +43,7 @@ import { LandingCarouselComponent } from './components/carousel/carousel.compone
     LandingContactComponent,
     LandingFeaturesComponent,
     LandingCarouselComponent,
+    LandingVecanciesComponent,
   ],
 })
 export class LandingModule {}
