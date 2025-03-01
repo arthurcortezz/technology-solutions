@@ -50,11 +50,11 @@ export class AuthSignInComponent implements OnInit {
             '/-';
           this.router.navigateByUrl(redirectURL);
         },
-        error: (error) => {
+        error: (response) => {
           this.messageService.add({
             severity: 'error',
-            summary: 'Erro',
-            detail: error.message,
+            summary: response.error?.error,
+            detail: response.error?.message,
           });
         },
       });

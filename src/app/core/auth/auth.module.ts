@@ -12,19 +12,15 @@ import { AuthService } from './auth.service';
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
-    if (!environment.mockApi) {
-      return {
-        ngModule: AuthModule,
-        providers: [
-          {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-          }
-        ]
-      };
-    }
-
-    return { ngModule: AuthModule };
+    return {
+      ngModule: AuthModule,
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true,
+        },
+      ],
+    };
   }
 }

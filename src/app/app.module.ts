@@ -8,6 +8,7 @@ import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
 
 import { routes } from './app-routing';
 import { AppComponent } from './app.component';
+import { AuthModule } from './core/auth/auth.module';
 
 const config: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -19,6 +20,7 @@ const config: ExtraOptions = {
     ToastModule,
     BrowserModule,
     HttpClientModule,
+    AuthModule.forRoot(),
     BrowserAnimationsModule,
     RouterModule.forRoot(routes, config),
   ],

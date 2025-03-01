@@ -22,11 +22,17 @@ export class RoleGuard {
   }
 
   private check(route: Route, segments: UrlSegment[]): Observable<boolean> {
+    console.log('🚀 ~ RoleGuard ~ check ~ segments:', segments);
+    console.log('🚀 ~ RoleGuard ~ check ~ route:', route);
     return this.service.user$.pipe(
       map((user) => {
-        return user.privileges
-          .map((item) => item.key)
-          .includes(`${route.data.menuKey}_MENU`);
+        if (user.privileges) {
+          return user.privileges
+            .map((item) => item.key)
+            .includes(`${route.data?.['menuKey']}_MENU`);
+        } else {
+          return true;
+        }
       })
     );
   }

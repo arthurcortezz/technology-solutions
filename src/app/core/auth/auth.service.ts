@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 
+import { AuthUtils } from './auth.utils';
 import { UserService } from '../user/user.service';
 import { UserJWTInterface } from '../user/user.types';
-import { LoginBodyInterface, LoginResponseInterface } from './auth.types';
+import {
+  ForgotPasswordBodyInterface,
+  ForgotPasswordResponseInterface,
+  LoginBodyInterface,
+  LoginResponseInterface,
+  ResetPasswordBodyInterface,
+  ResetPasswordResponseInterface,
+} from './auth.types';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
-  public authenticated: boolean = false;
-  public accessToken: string = '';
+  private authenticated: boolean = false;
 
   constructor(
-    private httpClient: HttpClient,
-    private userService: UserService
+    private readonly httpClient: HttpClient,
+    private readonly userService: UserService
   ) {}
 
-  public getAccessToken(): string {
+  set accessToken(token: string) {
+    localStorage.setItem('accessToken', token);
+  }
+
+  get accessToken(): string {
     return localStorage.getItem('accessToken') ?? '';
   }
 
@@ -27,7 +35,7 @@ export class AuthService {
     credentials: LoginBodyInterface
   ): Observable<LoginResponseInterface> {
     if (this.authenticated) {
-      return throwError(() => new Error('O usuário já está conectado.'));
+      return throwError(() => 'O usuário já está conectado.');
     }
 
     return this.httpClient
@@ -45,19 +53,86 @@ export class AuthService {
       );
   }
 
+  public signUp(data: {
+    name: string;
+    email: string;
+    password: string;
+    cpf: string;
+    siteName: string;
+  }): Observable<any> {
+    return this.httpClient
+      .post('@api/authentication/create-account', data)
+      .pipe(
+        switchMap((response: any) => {
+          if (response && response.accessToken && response.user) {
+            this.authenticated = true;
+            this.accessToken = response.accessToken;
+            this.userService.user = response.user;
+          }
+          return of(response);
+        }),
+        catchError((error) => {
+          return throwError(() => error);
+        })
+      );
+  }
+
   public signInUsingToken(): Observable<boolean> {
     return this.httpClient
       .get<UserJWTInterface>('@api/authentication/profile')
       .pipe(
         catchError(() => of(null)),
-        map((response: UserJWTInterface | null) => {
+        switchMap((response: UserJWTInterface | null) => {
           if (response) {
             this.authenticated = true;
             this.userService.user = response;
-            return true;
+            return of(true);
           }
-          return false;
+          return of(false);
         })
       );
+  }
+
+  public forgotPassword(
+    data: ForgotPasswordBodyInterface
+  ): Observable<ForgotPasswordResponseInterface> {
+    return this.httpClient.post<ForgotPasswordResponseInterface>(
+      '@api/authentication/recover-password',
+      data
+    );
+  }
+
+  public resetPassword(
+    token: string,
+    data: ResetPasswordBodyInterface
+  ): Observable<any> {
+    return this.httpClient.post<ResetPasswordResponseInterface>(
+      `@api/authentication/reset-password/${token}`,
+      data
+    );
+  }
+
+  public signOut(): Observable<any> {
+    localStorage.removeItem('accessToken');
+
+    this.authenticated = false;
+
+    return of(true);
+  }
+
+  public check(): Observable<boolean> {
+    if (this.authenticated) {
+      return of(true);
+    }
+
+    if (!this.accessToken) {
+      return of(false);
+    }
+
+    if (AuthUtils.isTokenExpired(this.accessToken)) {
+      return of(false);
+    }
+
+    return this.signInUsingToken();
   }
 }
