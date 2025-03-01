@@ -28,6 +28,7 @@ export default {
     extend: {
       backgroundImage: {
         'features-image': "url('/assets/images/features.jpg')",
+        'auth-image': "linear-gradient(180deg, rgba(0, 0, 0, 0.00) 10%, rgba(0, 0, 0, 0.80) 100%), url('https://www.cio.com/wp-content/uploads/2024/03/GettyImages-1459581852-2.jpg?quality=50&strip=all')",
       },
     }
   },

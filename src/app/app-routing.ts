@@ -11,6 +11,13 @@ export const routes: Routes = [
             (m) => m.LandingModule
           ),
       },
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./modules/auth/sign-in/sign-in.module').then(
+            (m) => m.AuthSignInModule
+          ),
+      },
     ],
   },
 ];
