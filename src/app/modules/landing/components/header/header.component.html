@@ -12,13 +12,6 @@
     />
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       <button
-        class="text-sm dark:bg-white font-semibold mr-4 leading-6 px-8 text-gray-950"
-        mat-flat-button
-        [routerLink]="['/registrar']"
-      >
-        <span> Cadastre-se </span>
-      </button>
-      <button
         class="text-sm font-semibold leading-6 px-8 text-gray-50"
         mat-flat-button
         color="primary"
@@ -32,13 +25,6 @@
       <button mat-button class="flex" [matMenuTriggerFor]="menu">
         <mat-icon class="text-white text-lg">menu</mat-icon>
         <mat-menu #menu="matMenu" class="!lg:hidden" id="buttonMenu">
-          <button
-            class="text-sm font-semibold leading-6 justify-center text-white"
-            mat-menu-item
-            [routerLink]="['/registrar']"
-          >
-            <a> Cadastre-se </a>
-          </button>
           <button
             class="text-sm font-semibold leading-6 text-gray-50 justify-center"
             mat-menu-item

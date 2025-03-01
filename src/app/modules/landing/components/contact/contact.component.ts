@@ -60,10 +60,6 @@ export class LandingContactComponent implements OnInit {
   }
 
   onCaptchaResolved(response: Event): void {
-    console.log(
-      '🚀 ~ LandingContactComponent ~ onCaptchaResolved ~ response:',
-      response
-    );
     this.form.controls['recaptcha'].setValue(response);
   }
 }
