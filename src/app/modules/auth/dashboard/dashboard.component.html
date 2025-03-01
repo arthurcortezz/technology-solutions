@@ -1,3 +1,45 @@
-<div class="flex w-full h-screen">
- dash
+<div
+  class="ml-16 flex justify-between px-10 border-b-2 items-center py-2 h-[81px]"
+>
+  <img src="assets/logo/logo-clear.png" alt="Logo" class="w-16 h-16" />
+  <div *ngIf="user" class="flex items-center cursor-pointer">
+    <img src="assets/images/user.svg" alt="Foto usuário" class="w-14 h-14" />
+    <div class="text-lg">{{ user.username }}</div>
+    <img src="assets/icons/arrow-down.svg" alt="Foto usuário" class="w-8 h-8" />
+  </div>
+</div>
+<div class="flex">
+  <div
+    class="group fixed left-0 top-0 flex flex-col items-center bg-gray-600 text-white w-16 hover:w-64 transition-all duration-300 ease-in-out p-4 h-full z-50"
+  >
+    <h2
+      class="text-xl font-semibold mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+    >
+      Menu
+    </h2>
+    <ul class="w-full">
+      <li
+        *ngFor="let menu of menus"
+        class="flex items-center w-full p-2 hover:bg-gray-700 cursor-pointer rounded-md transition-colors duration-200"
+      >
+        <i [class]="menu.icon" class="mr-3 text-lg"></i>
+        <span
+          class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        >
+          {{ menu.name }}
+        </span>
+      </li>
+    </ul>
+  </div>
+  <div class="w-full p-6 ml-16">
+    <!-- GRÁFICO DE CONVIDADOS: STATUS -->
+    <app-chart title="Usuários convidados"></app-chart>
+
+    <!-- GRÁFICO DE USUÁRIOS CADASTRADOS: PERFIL -->
+    <!-- INDICADORES DE:
+            TOTAL DE COLABORADORES CADASTRADOS
+            TOTAL DE CONVITES ENVIADOS
+            TOTAL DE CONVITES EXPIRADOS
+    -->
+  </div>
 </div>
