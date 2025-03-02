@@ -22,8 +22,6 @@ export class RoleGuard {
   }
 
   private check(route: Route, segments: UrlSegment[]): Observable<boolean> {
-    console.log('🚀 ~ RoleGuard ~ check ~ segments:', segments);
-    console.log('🚀 ~ RoleGuard ~ check ~ route:', route);
     return this.service.user$.pipe(
       map((user) => {
         if (user.privileges) {

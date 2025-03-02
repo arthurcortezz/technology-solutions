@@ -9,6 +9,7 @@ import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
 import { routes } from './app-routing';
 import { AppComponent } from './app.component';
 import { AuthModule } from './core/auth/auth.module';
+import { AuthLayoutComponent } from './modules/layout/auth-layout.component';
 
 const config: ExtraOptions = {
   preloadingStrategy: PreloadAllModules,
@@ -26,6 +27,6 @@ const config: ExtraOptions = {
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AuthLayoutComponent],
 })
 export class AppModule {}

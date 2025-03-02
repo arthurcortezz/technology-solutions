@@ -15,14 +15,6 @@ export class DashboardComponent implements OnInit {
     username: string;
   };
 
-  menus = [
-    { name: 'Dashboard', icon: 'fas fa-home' },
-    { name: 'Usuários', icon: 'fas fa-users' },
-    { name: 'Relatórios', icon: 'fas fa-chart-bar' },
-    { name: 'Configurações', icon: 'fas fa-cog' },
-    { name: 'Sair', icon: 'fas fa-sign-out-alt' },
-  ];
-
   private readonly unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(private readonly service: NavigationService) {}
