@@ -29,4 +29,8 @@ export class UserService {
         })
       );
   }
+
+  findAll(): Observable<UserJWTInterface[]> {
+    return this.httpClient.get<UserJWTInterface[]>('@api/authentication/users');
+  }
 }

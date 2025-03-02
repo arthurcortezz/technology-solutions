@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center space-y-4">
+  <div ng-controller="InvitationController" class="w-full">
+    <table class="w-full text-center border-collapse border border-gray-300">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 p-2">Nome</th>
+          <th class="border border-gray-300 p-2">Email</th>
+          <th class="border border-gray-300 p-2">Perfil</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" class="border border-gray-300">
+          <td class="border border-gray-300 p-2">{{ user.name }}</td>
+          <td class="border border-gray-300 p-2">{{ user.email }}</td>
+          <td class="border border-gray-300 p-2">{{ user.role.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

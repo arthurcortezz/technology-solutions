@@ -6,12 +6,12 @@ import { AuthUtils } from './auth.utils';
 import { UserService } from '../user/user.service';
 import { UserJWTInterface } from '../user/user.types';
 import {
-  ForgotPasswordBodyInterface,
-  ForgotPasswordResponseInterface,
   LoginBodyInterface,
   LoginResponseInterface,
   ResetPasswordBodyInterface,
+  ForgotPasswordBodyInterface,
   ResetPasswordResponseInterface,
+  ForgotPasswordResponseInterface,
 } from './auth.types';
 
 @Injectable()
@@ -56,9 +56,15 @@ export class AuthService {
   public signUp(data: {
     name: string;
     email: string;
-    password: string;
     cpf: string;
-    siteName: string;
+    phone: string;
+    cep: string;
+    uf: string;
+    city: string;
+    neighborhood: string;
+    street: string;
+    password: string;
+    cPassword: string;
   }): Observable<any> {
     return this.httpClient
       .post('@api/authentication/create-account', data)

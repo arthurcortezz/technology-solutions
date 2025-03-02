@@ -10,6 +10,14 @@ import { InviteInterface } from './invite.interface';
 export class InvitesService {
   constructor(private readonly httpClient: HttpClient) {}
 
+  findOne(token: string): Observable<InviteInterface> {
+    return this.httpClient.get<InviteInterface>(`@api/invites/${token}`);
+  }
+
+  findAll(): Observable<InviteInterface[]> {
+    return this.httpClient.get<InviteInterface[]>(`@api/invites`);
+  }
+
   create(
     data: InviteInterface
   ): Observable<{ message: string; invite: InviteInterface }> {
@@ -17,5 +25,13 @@ export class InvitesService {
       message: string;
       invite: InviteInterface;
     }>('@api/invites', data);
+  }
+
+  getStatusChart(): Observable<any> {
+    return this.httpClient.get('@api/invites/status');
+  }
+
+  getRolesChart(): Observable<any> {
+    return this.httpClient.get('@api/invites/roles');
   }
 }

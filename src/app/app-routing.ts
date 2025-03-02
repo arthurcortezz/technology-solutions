@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { AuthGuard } from './core/auth/guards/auth.guard';
-import { AuthLayoutComponent } from './modules/layout/auth-layout.component';
 import { NoAuthGuard } from './core/auth/guards/no-auth.guard';
+import { AuthLayoutComponent } from './modules/layout/auth-layout.component';
 
 export const routes: Routes = [
   { path: '-', pathMatch: 'full', redirectTo: 'dashboard' },
@@ -14,6 +14,26 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./modules/landing/landing.module').then(
             (m) => m.LandingModule
+          ),
+      },
+    ],
+  },
+  {
+    path: '',
+    canActivate: [NoAuthGuard],
+    children: [
+      {
+        path: 'login',
+        loadChildren: () =>
+          import('./modules/auth/sign-in/sign-in.module').then(
+            (m) => m.AuthSignInModule
+          ),
+      },
+      {
+        path: 'cadastro/:token',
+        loadChildren: () =>
+          import('./modules/auth/sign-up/sign-up.module').then(
+            (m) => m.SignUpModule
           ),
       },
     ],
@@ -39,17 +59,12 @@ export const routes: Routes = [
             (m) => m.InviteModule
           ),
       },
-    ],
-  },
-  {
-    path: '',
-    canActivate: [NoAuthGuard],
-    children: [
       {
-        path: 'login',
+        path: 'usuarios',
+        canMatch: [AuthGuard],
         loadChildren: () =>
-          import('./modules/auth/sign-in/sign-in.module').then(
-            (m) => m.AuthSignInModule
+          import('./modules/auth/users/users.module').then(
+            (m) => m.UsersModule
           ),
       },
     ],
