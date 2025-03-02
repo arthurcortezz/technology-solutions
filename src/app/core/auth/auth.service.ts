@@ -6,12 +6,12 @@ import { AuthUtils } from './auth.utils';
 import { UserService } from '../user/user.service';
 import { UserJWTInterface } from '../user/user.types';
 import {
-  ForgotPasswordBodyInterface,
-  ForgotPasswordResponseInterface,
   LoginBodyInterface,
   LoginResponseInterface,
   ResetPasswordBodyInterface,
+  ForgotPasswordBodyInterface,
   ResetPasswordResponseInterface,
+  ForgotPasswordResponseInterface,
 } from './auth.types';
 
 @Injectable()

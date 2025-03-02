@@ -14,6 +14,10 @@ export class InvitesService {
     return this.httpClient.get<InviteInterface>(`@api/invites/${token}`);
   }
 
+  findAll(): Observable<InviteInterface[]> {
+    return this.httpClient.get<InviteInterface[]>(`@api/invites`);
+  }
+
   create(
     data: InviteInterface
   ): Observable<{ message: string; invite: InviteInterface }> {

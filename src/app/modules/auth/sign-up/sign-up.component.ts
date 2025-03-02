@@ -10,6 +10,7 @@ import { InvitesService } from '../invite/invite.service';
 import { InviteInterface } from '../invite/invite.interface';
 import { UserService } from 'src/app/core/user/user.service';
 import { AuthService } from 'src/app/core/auth/auth.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,6 +26,7 @@ export class SignUpComponent implements OnInit {
     private readonly route: Router,
     private readonly service: InvitesService,
     private readonly userService: AuthService,
+    private readonly messageService: MessageService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly formBuilder: UntypedFormBuilder
   ) {}
@@ -68,12 +70,34 @@ export class SignUpComponent implements OnInit {
     }
 
     const data = this.form.getRawValue();
-    this.userService.signUp(data).subscribe(() => {
-      this.route.navigate(['/']);
+    data.cpf = this.removeMask(data.cpf);
+    data.phone = this.removeMask(data.phone);
+    data.roleId = 3;
+    this.userService.signUp(data).subscribe({
+      next: (response) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: response.message,
+        });
+        this.route.navigate(['/']);
+      },
+      error: (response) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: response.error.message[0],
+        });
+      },
     });
   }
 
   goBack(): void {
     this.route.navigate(['/']);
+  }
+
+  removeMask(value: string): string {
+    const newValue = value.replace(/\D/g, '');
+    return newValue;
   }
 }
