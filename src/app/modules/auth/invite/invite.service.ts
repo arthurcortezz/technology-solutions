@@ -26,4 +26,12 @@ export class InvitesService {
       invite: InviteInterface;
     }>('@api/invites', data);
   }
+
+  getStatusChart(): Observable<any> {
+    return this.httpClient.get('@api/invites/status');
+  }
+
+  getRolesChart(): Observable<any> {
+    return this.httpClient.get('@api/invites/roles');
+  }
 }

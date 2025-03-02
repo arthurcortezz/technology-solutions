@@ -38,8 +38,6 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse && error.status === 401) {
-          // this.authService.signOut();
-
           location.reload();
         }
 
@@ -49,7 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   getOptions(req: HttpRequest<any>): any {
-    const isFormData = req.body instanceof FormData;
+    const isFormData = req.body;
     if (isFormData) {
       return {
         Authorization: `Bearer ${this.authService.accessToken}`,

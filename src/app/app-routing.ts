@@ -59,6 +59,14 @@ export const routes: Routes = [
             (m) => m.InviteModule
           ),
       },
+      {
+        path: 'usuarios',
+        canMatch: [AuthGuard],
+        loadChildren: () =>
+          import('./modules/auth/users/users.module').then(
+            (m) => m.UsersModule
+          ),
+      },
     ],
   },
 ];
