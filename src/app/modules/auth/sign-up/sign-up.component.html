@@ -1,0 +1,191 @@
+<div class="flex w-full">
+  <div class="grid w-full lg:w-1/2 px-8 lg:shadow-none shadow">
+    <img
+      class="place-self-center"
+      ngSrc="assets/logo/logo.png"
+      height="40"
+      width="250"
+    />
+
+    <form #signInNgForm="ngForm" [formGroup]="form">
+      <div
+        class="mb-8 text-lg font-bold tracking-tight dark:text-low-pure leading-tight"
+      >
+        Realize o seu cadastro
+      </div>
+
+      <div
+        class="mb-8 text-md font-bold tracking-tight dark:text-low-pure leading-tight"
+      >
+        Dados pessoais
+      </div>
+
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">E-mail</mat-label>
+        <input
+          readonly
+          matInput
+          id="email"
+          formControlName="email"
+          placeholder="email@gmail.com.br"
+        />
+        <mat-error *ngIf="form.get('email')?.hasError('required')">
+          O e-mail é obrigatório
+        </mat-error>
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
+          Por favor insira um e-mail válido.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Nome</mat-label>
+        <input
+          matInput
+          formControlName="name"
+          placeholder="Digite o seu nome"
+        />
+        <mat-error *ngIf="form.get('name')?.hasError('required')">
+          O nome é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full">
+        <mat-label class="font-bold">CPF</mat-label>
+        <input
+          matInput
+          hubsdCpfMask
+          maxlength="11"
+          formControlName="cpf"
+          placeholder="Digite o seu cpf"
+        />
+        <mat-error>O cpf é obrigatório.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Telefone</mat-label>
+        <input
+          matInput
+          phoneMask
+          maxlength="15"
+          formControlName="phone"
+          placeholder="(99) 9 9999-9999"
+        />
+        <mat-error *ngIf="form.get('phone')?.hasError('required')">
+          O telefone é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Senha</mat-label>
+        <input
+          matInput
+          formControlName="password"
+          placeholder="Crie uma senha"
+        />
+        <mat-error *ngIf="form.get('password')?.hasError('required')">
+          A senha é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Confirmar senha</mat-label>
+        <input
+          matInput
+          formControlName="cPassword"
+          placeholder="Confirme a sua senha"
+        />
+        <mat-error *ngIf="form.get('cPassword')?.hasError('required')">
+          A confirmação de senha é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <div
+        class="mb-8 text-md font-bold tracking-tight dark:text-low-pure leading-tight"
+      >
+        Endereço
+      </div>
+
+      <div class="flex gap-2">
+        <mat-form-field class="w-full mb-2">
+          <mat-label class="font-bold">Cep</mat-label>
+          <input
+            matInput
+            maxlength="8"
+            formControlName="cep"
+            placeholder="99999-999"
+          />
+          <mat-error *ngIf="form.get('cep')?.hasError('required')">
+            O cep é obrigatório
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-full mb-2">
+          <mat-label class="font-bold">UF</mat-label>
+          <input
+            matInput
+            maxlength="2"
+            formControlName="uf"
+            placeholder="Selecione a UF"
+          />
+          <mat-error *ngIf="form.get('cep')?.hasError('required')">
+            A UF é obrigatória
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Logradouro</mat-label>
+        <input
+          matInput
+          formControlName="street"
+          placeholder="Digite o logradouro"
+        />
+        <mat-error *ngIf="form.get('street')?.hasError('required')">
+          O logradouro é obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Bairro</mat-label>
+        <input
+          matInput
+          formControlName="neighborhood"
+          placeholder="Digite o bairro"
+        />
+        <mat-error *ngIf="form.get('neighborhood')?.hasError('required')">
+          O bairro é obrigatório
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="w-full mb-2">
+        <mat-label class="font-bold">Cidade</mat-label>
+        <input matInput formControlName="city" placeholder="Digite a cidade" />
+        <mat-error *ngIf="form.get('city')?.hasError('required')">
+          A cidade é obrigatória
+        </mat-error>
+      </mat-form-field>
+
+      <div class="flex w-full gap-4">
+        <button
+          mat-flat-button
+          color="secondary"
+          (click)="goBack()"
+          class="w-full mt-6"
+        >
+          <span>Voltar</span>
+        </button>
+        <button
+          class="w-full mt-6"
+          mat-flat-button
+          color="primary"
+          [disabled]="form.invalid"
+          (click)="signUp()"
+        >
+          <span *ngIf="!form.disabled">Cadastrar</span>
+          <mat-progress-spinner
+            *ngIf="form.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"
+          ></mat-progress-spinner>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="bg-auth-image bg-cover bg-center lg:w-1/2 w-0"></div>
+</div>

@@ -16,7 +16,7 @@ import { AuthService } from '../../../core/auth/auth.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class AuthSignInComponent implements OnInit {
-  public signInForm!: UntypedFormGroup;
+  public form!: UntypedFormGroup;
 
   constructor(
     private readonly router: Router,
@@ -27,20 +27,20 @@ export class AuthSignInComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.signInForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
   signIn(): void {
-    this.signInForm.disable();
+    this.form.disable();
 
     this.authService
-      .signIn(this.signInForm.value)
+      .signIn(this.form.value)
       .pipe(
         finalize(() => {
-          this.signInForm.enable();
+          this.form.enable();
         })
       )
       .subscribe({
