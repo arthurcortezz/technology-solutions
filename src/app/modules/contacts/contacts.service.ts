@@ -17,6 +17,6 @@ export class ContactsService {
     return this.httpClient.post<{
       message: string;
       contact: ContactInterface;
-    }>(environment.api + '/contacts', data);
+    }>('@api/contacts', data);
   }
 }
